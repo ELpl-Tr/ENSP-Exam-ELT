@@ -53,8 +53,14 @@ server <- function(input, output) {
     })
 
     output$nuage <- renderPlot({
+      if (input$rose == T) {
+        col_pts <- "pink"
+      } else {
+        col_pts <- "#4F4F4F"
+      }
+      
       ggplot(donnees(), aes(x = carat, y = price)) +
-        geom_point()
+        geom_point(color = col_pts)
     })
 }
 
