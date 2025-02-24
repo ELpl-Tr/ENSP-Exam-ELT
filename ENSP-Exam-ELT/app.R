@@ -9,21 +9,26 @@ library(ggplot2)
 library(shinylive)
 #install.packages("DT")
 library(DT)
+#install.packages("bslib")
+library(bslib) #theme
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
     theme = bs_theme(bootswatch = "minty"),
-    # Application title
+    
     titlePanel("Exploration des Diamants"),
 
-    # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
-            radioButtons(inputId = "", 
+            radioButtons(inputId = "rose", 
                        label = "Colorier les points en rose ?", 
                        choices = c("Oui" = T, 
                                    "Non" = F),
                        selected = T) ,
+            selectInput(inputId = "filtrer", 
+                        label = "Choisir une couleur à filtrer :", 
+                        choices = sort(unique(diamonds$color)), 
+                        selected = T),
             sliderInput("bins",
                         "Number of bins:",
                         min = 1,
