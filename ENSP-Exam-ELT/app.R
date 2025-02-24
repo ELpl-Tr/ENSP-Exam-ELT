@@ -14,7 +14,7 @@ library(bslib) #theme
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-    theme = bs_theme(bootswatch = "minty"),
+    theme = bs_theme(version = 5, bootswatch = "minty"),
     
     titlePanel("Exploration des Diamants"),
 
@@ -29,11 +29,11 @@ ui <- fluidPage(
                         label = "Choisir une couleur à filtrer :", 
                         choices = sort(unique(diamonds$color)), 
                         selected = T),
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            sliderInput("prix",
+                        "Prix maximum :",
+                        min = 300,
+                        max = 20000,
+                        value = 5000)
         ),
 
         # Show a plot of the generated distribution
