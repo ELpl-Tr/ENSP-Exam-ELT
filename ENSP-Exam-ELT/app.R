@@ -41,7 +41,8 @@ ui <- fluidPage(
         ),
 
         mainPanel(
-           plotOutput("nuage")
+           plotOutput("nuage"),
+           DTOutput(outputId = "tableau")
         )
     )
 )
@@ -54,6 +55,7 @@ server <- function(input, output) {
                price <= input$prix)
     })
 
+    #Nuage de points
     output$nuage <- renderPlot({
       if (input$rose == T) {
         col_pts <- "pink"
@@ -65,9 +67,16 @@ server <- function(input, output) {
         geom_point(color = col_pts) +
         labs(title = glue(("prix: {input$prix} & color: {input$filtrer}"))) +
         theme(
-          plot.title = element_text(family = "Rockwell Light"),
-          axis.title.x = element_text(family = "Rockwell Light"),
-          axis.title.y = element_text(family = "Rockwell Light"))
+          plot.title = element_text(family = "Rockwell Light", color = "#4F4F4F"),
+          axis.title.x = element_text(family = "Rockwell Light", color = "#4F4F4F"),
+          axis.title.y = element_text(family = "Rockwell Light", color = "#4F4F4F"))
+    })
+    
+    #Tableau
+    output$tableau <- renderDT({
+      datatable(donnees(), 
+                options = list(pageLength = 10, 
+                               scrollX = T))
     })
 }
 
