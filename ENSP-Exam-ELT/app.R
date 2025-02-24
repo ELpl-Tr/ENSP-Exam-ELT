@@ -11,6 +11,8 @@ library(shinylive)
 library(DT)
 #install.packages("bslib")
 library(bslib) #theme
+#install.packages("glue")
+library(glue) #titre interactif
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -60,7 +62,12 @@ server <- function(input, output) {
       }
       
       ggplot(donnees(), aes(x = carat, y = price)) +
-        geom_point(color = col_pts)
+        geom_point(color = col_pts) +
+        labs(title = glue(("prix: {input$prix} & color: {input$filtrer}"))) +
+        theme(
+          plot.title = element_text(family = "Rockwell Light"),
+          axis.title.x = element_text(family = "Rockwell Light"),
+          axis.title.y = element_text(family = "Rockwell Light"))
     })
 }
 
