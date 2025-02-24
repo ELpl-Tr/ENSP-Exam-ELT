@@ -33,7 +33,9 @@ ui <- fluidPage(
                         "Prix maximum :",
                         min = 300,
                         max = 20000,
-                        value = 5000)
+                        value = 5000),
+            actionButton("notif", 
+                         "Afficher une notification")
         ),
 
         # Show a plot of the generated distribution
