@@ -1,23 +1,29 @@
-###Début de projet###
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    https://shiny.posit.co/
-#
+###Projet final###
 
 library(shiny)
+#install.packages("dplyr")
+library(dplyr)
+#install.packages("ggplot2")
+library(ggplot2)
+#install.packages("shinylive")
+library(shinylive)
+#install.packages("DT")
+library(DT)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
+    theme = bs_theme(bootswatch = "minty"),
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Exploration des Diamants"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
+            radioButtons(inputId = "", 
+                       label = "Colorier les points en rose ?", 
+                       choices = c("Oui" = T, 
+                                   "Non" = F),
+                       selected = T) ,
             sliderInput("bins",
                         "Number of bins:",
                         min = 1,
