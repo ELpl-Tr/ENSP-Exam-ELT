@@ -78,6 +78,13 @@ server <- function(input, output) {
                 options = list(pageLength = 10, 
                                scrollX = T))
     })
+    
+    #Notif
+    observeEvent(input$notif, {
+      showNotification(
+        "Test"
+      )
+    })
 }
 
 # Run the application 
