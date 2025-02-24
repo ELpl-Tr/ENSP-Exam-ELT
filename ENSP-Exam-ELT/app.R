@@ -65,7 +65,7 @@ server <- function(input, output) {
       
       ggplot(donnees(), aes(x = carat, y = price)) +
         geom_point(color = col_pts) +
-        labs(title = glue(("prix: {input$prix} & color: {input$filtrer}"))) +
+        labs(title = glue("prix: {input$prix} & color: {input$filtrer}")) +
         theme(
           plot.title = element_text(family = "Rockwell Light", color = "#4F4F4F"),
           axis.title.x = element_text(family = "Rockwell Light", color = "#4F4F4F"),
@@ -82,7 +82,8 @@ server <- function(input, output) {
     #Notif
     observeEvent(input$notif, {
       showNotification(
-        "Test"
+        glue("prix: {input$prix} & color: {input$filtrer}"),
+        duration = 5
       )
     })
 }
